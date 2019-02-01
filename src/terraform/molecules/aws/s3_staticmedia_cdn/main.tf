@@ -28,6 +28,8 @@ resource "aws_iam_access_key" "key" {
   user = "${aws_iam_user.service_user.name}"
 }
 
+# Policy Adapted from: https://stackoverflow.com/a/19720722
+
 resource "aws_iam_user_policy" "bucket_policy" {
   name = "${aws_iam_user.service_user.name}_user_policy"
   user = "${aws_iam_user.service_user.name}"
@@ -41,6 +43,9 @@ resource "aws_iam_user_policy" "bucket_policy" {
       "Effect": "Allow",
       "Action": [
         "s3:ListBucket"
+        "s3:GetBucketLocation",
+        "s3:ListBucketMultipartUploads",
+        "s3:ListBucketVersions"
       ],
       "Resource": "${aws_s3_bucket.static_media.arn}"
     },
@@ -48,9 +53,9 @@ resource "aws_iam_user_policy" "bucket_policy" {
       "Sid": "AllowObjectsCRUD",
       "Effect": "Allow",
       "Action": [
-        "s3:DeleteObject",
-        "s3:GetObject",
-        "s3:PutObject"
+        "s3:*Object*",
+        "s3:ListMultipartUploadParts",
+        "s3:AbortMultipartUpload"
       ],
       "Resource": "${aws_s3_bucket.static_media.arn}/*"
     }
