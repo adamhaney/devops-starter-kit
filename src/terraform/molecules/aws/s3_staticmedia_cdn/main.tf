@@ -29,7 +29,8 @@ resource "aws_iam_access_key" "key" {
 }
 
 # Policy Adapted from: https://stackoverflow.com/a/19720722
-
+# and https://gist.github.com/rockymeza/6157069 because
+# apparently django-storages can't document what permissions it needs
 resource "aws_iam_user_policy" "bucket_policy" {
   name = "${aws_iam_user.service_user.name}_user_policy"
   user = "${aws_iam_user.service_user.name}"
@@ -38,6 +39,14 @@ resource "aws_iam_user_policy" "bucket_policy" {
 {
   "Version": "2012-10-17",
   "Statement": [
+    {
+      "Effect":"Allow",
+    
+      "Action":[
+        "s3:ListAllMyBuckets"
+      ],
+      "Resource":"arn:aws:s3:::*"
+    },
     {
       "Sid": "AllowListObjects",
       "Effect": "Allow",
