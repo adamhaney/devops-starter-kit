@@ -42,7 +42,7 @@ resource "aws_iam_user_policy" "bucket_policy" {
       "Sid": "AllowListObjects",
       "Effect": "Allow",
       "Action": [
-        "s3:ListBucket"
+        "s3:ListBucket",
         "s3:GetBucketLocation",
         "s3:ListBucketMultipartUploads",
         "s3:ListBucketVersions"
