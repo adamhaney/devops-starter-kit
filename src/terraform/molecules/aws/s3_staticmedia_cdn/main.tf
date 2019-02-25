@@ -145,6 +145,7 @@ resource "aws_cloudfront_distribution" "static_media" {
     viewer_protocol_policy = "redirect-to-https"
     default_ttl            = "86400"
     max_ttl                = "31536000"
+    compress = true
 
     forwarded_values {
       query_string = ""
