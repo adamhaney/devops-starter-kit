@@ -14,7 +14,7 @@ resource "aws_s3_bucket" "static_media" {
     allowed_origins = ["*"]
   }
 
-  tags {
+  tags = {
     costcenter = "${var.costcenter}"
     project    = "${var.project}"
   }
