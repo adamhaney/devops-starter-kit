@@ -143,7 +143,7 @@ resource "aws_cloudfront_distribution" "static_media" {
     cached_methods         = ["GET", "HEAD"]
     target_origin_id       = "S3-${var.bucket_name}"
     viewer_protocol_policy = "redirect-to-https"
-    default_ttl            = "86400"
+    default_ttl            = 3600
     max_ttl                = "31536000"
     compress = true
 
@@ -157,7 +157,6 @@ resource "aws_cloudfront_distribution" "static_media" {
 
     viewer_protocol_policy = "allow-all"
     min_ttl                = 0
-    default_ttl            = 3600
   }
 
   restrictions {
