@@ -148,7 +148,7 @@ resource "aws_cloudfront_distribution" "static_media" {
     compress = true
 
     forwarded_values {
-      query_string = ""
+      query_string = false
 
       cookies {
         forward = "none"
