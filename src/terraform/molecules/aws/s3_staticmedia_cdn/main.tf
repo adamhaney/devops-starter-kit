@@ -155,7 +155,6 @@ resource "aws_cloudfront_distribution" "static_media" {
       }
     }
 
-    viewer_protocol_policy = "allow-all"
     min_ttl                = 0
   }
 
